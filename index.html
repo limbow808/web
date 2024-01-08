@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your 3D Art Portfolio</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Coolvetica&display=swap">
+    <style>
+        * {
+            cursor: none;
+        }
+        body, .comment-count, #productList .product .product-price, .no-touch .product-list-titles-overlay #productList .product .product-price, #productDetails .product-price {
+            font-family: "minion-pro",serif;
+            line-height: 1.5em;
+            font-family: minion-pro;
+            font-weight: 400;
+            font-style: normal;
+            font-size: 18px;
+            letter-spacing: 0px;
+            line-height: 1.7em;
+        }
+        body, .comment-count {
+            color: #fff;
+        }
+        body {
+            background-color: #1f2023;
+            color: #fff;
+        }
+        :root {
+            --color-annotation-summary: #b8ebb8;
+            --color-annotation-comment: #ffd7a3;
+            --color-annotation-directquotation: #b4d2ff;
+            --color-annotation-indirectquotation: #e7b7ff;
+            --color-annotation-quickreference: #d52b1e;
+            --color-annotation-highlight: #d66800;
+        }
+        :host, :root {
+            --fa-style-family-classic: "Font Awesome 6 Free";
+            --fa-font-solid: normal 900 1em/1 "Font Awesome 6 Free";
+        }
+        :host, :root {
+            --fa-font-regular: normal 400 1em/1 "Font Awesome 6 Free";
+        }
+        :host, :root {
+            --fa-style-family-brands: "Font Awesome 6 Brands";
+            --fa-font-brands: normal 400 1em/1 "Font Awesome 6 Brands";
+        }
+        html {
+            font-family: sans-serif;
+            -ms-text-size-adjust: 100%;
+            -webkit-text-size-adjust: 100%;
+        }
+        ::selection, div::selection, a::selection, img::selection {
+            background: #c0eb3c;
+            color: #4a2ae5;
+        }
+        body {
+            font-family: 'Coolvetica', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #1F2023;
+            color: #fff;
+            letter-spacing: 2px; /* Adjusted the value as needed */
+        }
+
+        body *:not(input):not(textarea) {
+            caret-color: transparent;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: #1F2023;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            transition: background-color 0.3s;
+        }
+
+        header img {
+            max-width: 100%;
+            height: auto;
+            max-height: 100px;
+        }
+
+        .transparent-header {
+            background-color: rgba(0, 0, 0, 0);
+            backdrop-filter: blur(15px);
+        }
+
+        section {
+            display: flex;
+            flex-direction: column; /* Added this line to stack the images vertically */
+            justify-content: center;
+            align-items: center;
+            height: auto; /* Changed this from 100vh to auto to allow the section to grow with its content */
+            padding: 20px;
+            margin-top: 80px; /* Adjust the margin-top based on your header height */
+        }
+
+        .portfolio-item {
+            width: 100%; /* This will make the container take the full width */
+            display: flex; /* Using flexbox for alignment */
+            justify-content: center; /* Center the content horizontally */
+            align-items: center; /* Center the content vertically */
+            margin: 20px 0; /* Add some vertical spacing between items */
+        }
+
+        .portfolio-item img {
+            max-width: 100%; /* This will ensure the image is not wider than its container */
+            max-height: 80vh; /* This will limit the image height to 80% of the viewport height */
+            object-fit: contain; /* This will make sure the image is contained within the given dimensions without being cropped */
+        }
+
+        .text-section {
+            text-align: center; /* Center the text horizontally */
+            margin: 20px 0; /* Add some vertical spacing */
+            /* Optional: Add more styling as needed */
+        }
+
+        /* Footer styles */
+        footer {
+            position: relative;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            background-color: #1F2023; /* Distinct background color */
+            color: white; /* Text color */
+            text-align: center; /* Center the text */
+            padding: 20px 0; /* Padding for spacing */
+            z-index: 100; /* Ensure it's above other content */
+        }
+
+        footer p {
+            font-size: 1.5em; /* Big letters for copyright text */
+            margin: 0; /* Remove default margin */
+        }
+
+        footer nav ul {
+            list-style: none; /* Remove default list styling */
+            padding: 0; /* Remove default padding */
+            margin: 20px 0 0; /* Spacing above the navigation links */
+        }
+
+        footer nav ul li {
+            display: inline; /* Display links in a line */
+            margin: 0 10px; /* Spacing between links */
+        }
+
+        footer nav ul li a {
+            color: white; /* Match text color */
+            text-decoration: none; /* Remove underline from links */
+            transition: color 0.3s ease; /* Transition for hover effect */
+        }
+
+        footer nav ul li a:hover {
+            color: #aaa; /* Color change on hover */
+        }
+
+        html, body {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        body {
+            justify-content: space-between;
+        }
+
+        footer {
+            position: relative;
+            width: 100%;
+        }
+
+        #cursor {
+            width: 20px;
+            height: 20px;
+            border: 1px solid white;
+            border-radius: 50%;
+            position: fixed;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            transition: width 0.3s ease, height 0.3s ease;
+            animation: breathe 2s infinite;
+        }
+
+        @keyframes breathe {
+            0% { transform: translate(-50%, -50%) scale(1); }
+            50% { transform: translate(-50%, -50%) scale(1.1); }
+            100% { transform: translate(-50%, -50%) scale(1); }
+        }
+
+    </style>
+</head>
+<body>
+
+<div id="cursor"></div>
+
+<header>
+    <img id="logo" src="https://drive.google.com/uc?export=view&id=1KhpDt-eJVAkyKCebsn3bXhsPi4GYRsLL" alt="Your 3D Art Portfolio Logo">
+</header>
+
+<script>
+    window.addEventListener('scroll', function () {
+        var header = document.querySelector('header');
+        var scrollY = window.scrollY;
+        var scrollThreshold = 100;
+
+        if (scrollY > scrollThreshold) {
+            header.classList.add('transparent-header');
+        } else {
+            header.classList.remove('transparent-header');
+        }
+    });
+
+    var cursor = document.getElementById('cursor');
+
+    window.addEventListener('mousemove', function(e) {
+        cursor.style.left = e.pageX + 'px';
+        cursor.style.top = e.pageY + 'px';
+    });
+
+    window.addEventListener('mousedown', function() {
+        cursor.style.width = '30px';
+        cursor.style.height = '30px';
+    });
+
+    window.addEventListener('mouseup', function() {
+        cursor.style.width = '20px';
+        cursor.style.height = '20px';
+    });
+</script>
+
+<section id="projects">
+    <!-- Add your portfolio items here -->
+    <div class="portfolio-item">
+        <figure>
+            <img src="https://drive.google.com/uc?export=view&id=1-k9ZGLH4tf2ias9oC4WXRmY3q6FTn311" alt="Project 1">
+        </figure>
+    </div>
+
+    <!-- New text section -->
+    <div class="text-section">
+        <p>28 ‎november ‎2023.</p>
+    </div>
+
+    <section id="about">
+        <div
+        </div>
+    </section>
+    
+    <div class="portfolio-item">
+        <figure>
+            <img src="https://drive.google.com/uc?export=view&id=1DHrYLqqJxfMqWNlOlEofXKO8Bwvs0C6T" alt="Project 2">
+        </figure>
+    </div>
+
+    <!-- Add more items as needed -->
+</section>
+
+<section id="about">
+    <!-- Add your about image here -->
+    <div class="about-item">
+        <img src="about.jpg" alt="About Me">
+    </div>
+</section>
+
+<section id="contact">
+    <!-- Add your contact image here -->
+    <div class="contact-item">
+        <img src="contact.jpg" alt="Contact Me">
+    </div>
+</section>
+
+<!-- Footer -->
+<footer>
+    <p>&copy; Limbow</p>
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+<script>
+    // Manually input the upload date
+    var uploadDate = '2024-01-08';
+
+    // Use moment.js to get the time ago
+    var timeAgo = moment(uploadDate, 'YYYY-MM-DD').fromNow();
+
+    // Now you can use timeAgo in your HTML
+    document.querySelector('.text-section p').textContent = timeAgo;
+</script>
+
+</body>
+</html>
